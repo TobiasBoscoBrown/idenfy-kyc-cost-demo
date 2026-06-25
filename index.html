@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Manual KYC vs Automated Identity Verification: The Real Cost to Onboard a User in 2026</title>
+<meta name="description" content="A side-by-side look at manual KYC versus automated identity verification: speed, cost per check, and fraud caught, with a calculator to size the savings for your own volume." />
+<meta property="og:title" content="Manual KYC vs Automated Identity Verification: The Real Cost to Onboard a User in 2026" />
+<meta property="og:description" content="Speed, cost per check, and fraud caught, compared side by side, with a live calculator." />
+<meta property="og:type" content="article" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --violet:#734BFB;--violet-dark:#5a34d6;--violet-soft:#efeaff;
+    --ink:#0D0D0F;--body:#33333a;--muted:#6b6b76;--bg:#f6f7f9;--surface:#ffffff;--border:#e7e7ee;
+    --green:#16a06a;--red:#e0556a;--radius:18px;
+    --shadow:0 1px 2px rgba(13,13,15,.04),0 12px 32px rgba(13,13,15,.06);--maxw:760px;
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--body);font-size:18px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:var(--violet-dark);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .ribbon{background:var(--ink);color:#cfc7ff;font-size:13px;text-align:center;padding:9px 16px;letter-spacing:.2px}
+  .ribbon a{color:#fff;font-weight:600}
+  .topbar{background:var(--surface);border-bottom:1px solid var(--border)}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .topbar img{height:30px}
+  .topbar .nav{display:flex;gap:26px;font-size:15px;color:var(--muted);font-weight:500}
+  .topbar .nav span{display:none}
+  @media(min-width:680px){.topbar .nav span{display:inline}}
+  .btn{display:inline-block;background:var(--violet);color:#fff;font-weight:600;font-size:15px;padding:11px 20px;border-radius:999px;border:none;cursor:pointer;transition:transform .15s ease,background .15s ease}
+  .btn:hover{background:var(--violet-dark);text-decoration:none;transform:translateY(-1px)}
+  header.hero{background:var(--surface);padding:54px 0 40px;border-bottom:1px solid var(--border)}
+  .eyebrow{color:var(--violet);font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+  h1{color:var(--ink);font-size:40px;line-height:1.12;font-weight:800;margin:14px 0 16px;letter-spacing:-.02em}
+  @media(max-width:560px){h1{font-size:30px}}
+  .lede{font-size:20px;color:var(--muted);margin:0 0 26px}
+  .byline{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+  .byline .av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--violet),#9d7bff);color:#fff;display:grid;place-items:center;font-weight:700}
+  .byline strong{color:var(--ink)}
+  .dot{width:4px;height:4px;border-radius:50%;background:#cfcfd8;display:inline-block}
+  .audio{margin:24px 0 4px;background:var(--ink);border-radius:var(--radius);padding:16px 18px;display:flex;align-items:center;gap:14px;color:#fff}
+  .audio button{flex:0 0 auto;width:46px;height:46px;border-radius:50%;border:none;background:var(--violet);color:#fff;font-size:18px;cursor:pointer;display:grid;place-items:center}
+  .audio .meta{flex:1;min-width:0}
+  .audio .meta .t{font-weight:600;font-size:15px}
+  .audio .meta .s{font-size:12.5px;color:#a9a9b8}
+  .audio .track{height:6px;background:#2a2a33;border-radius:99px;margin-top:8px;overflow:hidden}
+  .audio .track > i{display:block;height:100%;width:0;background:var(--violet)}
+  .audio .time{font-size:12px;color:#a9a9b8;flex:0 0 auto}
+  main{padding:38px 0 10px}
+  .block{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  h2{color:var(--ink);font-size:27px;font-weight:750;line-height:1.25;margin:42px 0 12px;letter-spacing:-.01em}
+  h3{color:var(--ink);font-size:20px;font-weight:700;margin:26px 0 8px}
+  p{margin:0 0 18px}
+  strong{color:var(--ink);font-weight:700}
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  .takeaways{background:var(--violet-soft);border:1px solid #ddd2ff;border-radius:var(--radius);padding:20px 22px;margin:6px 0 8px}
+  .takeaways h4{margin:0 0 10px;color:var(--violet-dark);font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+  .takeaways ul{margin:0;padding-left:20px}
+  .takeaways li{margin:6px 0;color:var(--ink);font-weight:500}
+  .nugget{border-left:4px solid var(--violet);background:var(--surface);border-radius:0 14px 14px 0;padding:16px 20px;box-shadow:var(--shadow);font-size:19px;color:var(--ink)}
+  .statcard{background:var(--ink);color:#fff;border-radius:var(--radius);padding:30px 26px;text-align:center;margin:30px 0}
+  .statcard .big{font-size:54px;font-weight:800;color:#fff;line-height:1;letter-spacing:-.02em}
+  .statcard .big span{color:#b79bff}
+  .statcard .cap{color:#b8b8c6;margin-top:10px;font-size:15px}
+  .tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;background:var(--surface)}
+  table{border-collapse:collapse;width:100%;min-width:520px;font-size:15.5px}
+  th,td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--border)}
+  thead th{background:#fafaff;color:var(--ink);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+  tbody tr:last-child td{border-bottom:none}
+  td.man{color:var(--red);font-weight:600}
+  td.aut{color:var(--green);font-weight:600}
+  td.lbl{color:var(--ink);font-weight:600}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin:18px 0}
+  .card h3{margin-top:0}
+  .chart-cap{font-size:13px;color:var(--muted);margin-top:10px}
+  .legend{display:flex;gap:18px;font-size:13px;color:var(--muted);margin-top:6px;flex-wrap:wrap}
+  .legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+  .calc label{display:block;font-size:14px;font-weight:600;color:var(--ink);margin:14px 0 6px}
+  .calc .row{display:flex;align-items:center;gap:12px}
+  .calc input[type=range]{flex:1;accent-color:var(--violet)}
+  .calc .results{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+  @media(max-width:520px){.calc .results{grid-template-columns:1fr}}
+  .calc .res{border-radius:14px;padding:18px;text-align:center}
+  .calc .res.man{background:#fdeef0;border:1px solid #f6cfd6}
+  .calc .res.aut{background:#e9f8f1;border:1px solid #c2ecd9}
+  .calc .res .k{font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+  .calc .res .v{font-size:30px;font-weight:800;margin-top:4px;font-variant-numeric:tabular-nums}
+  .calc .res.man .v{color:var(--red)}
+  .calc .res.aut .v{color:var(--green)}
+  .calc .savings{margin-top:16px;background:var(--ink);color:#fff;border-radius:14px;padding:18px 20px;text-align:center}
+  .calc .savings .v{font-size:34px;font-weight:800;color:#fff;font-variant-numeric:tabular-nums}
+  .calc .savings .v span{color:#9d7bff}
+  .calc .savings .s{color:#b8b8c6;font-size:14px;margin-top:4px}
+  .assump{font-size:12.5px;color:var(--muted);margin-top:12px}
+  .pull{border:none;margin:34px 0;padding:0 6px;text-align:center}
+  .pull blockquote{margin:0;font-size:24px;line-height:1.4;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+  .pull cite{display:block;margin-top:12px;font-style:normal;font-size:14px;color:var(--muted)}
+  .quiz .q{font-weight:700;color:var(--ink);margin:0 0 12px}
+  .quiz .opt{display:block;width:100%;text-align:left;background:#fafaff;border:1px solid var(--border);border-radius:12px;padding:13px 15px;margin:8px 0;cursor:pointer;font-size:15.5px;color:var(--ink);transition:border .15s,background .15s}
+  .quiz .opt:hover{border-color:var(--violet)}
+  .quiz .opt.correct{background:#e9f8f1;border-color:var(--green);color:#0c6b46}
+  .quiz .opt.wrong{background:#fdeef0;border-color:var(--red);color:#a32a3c}
+  .quiz .exp{display:none;font-size:14.5px;color:var(--body);background:var(--violet-soft);border-radius:12px;padding:12px 14px;margin-top:6px}
+  .quiz .exp.show{display:block}
+  .quiz .nav{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:14px;color:var(--muted)}
+  .faq details{border:1px solid var(--border);border-radius:12px;background:var(--surface);margin:10px 0;overflow:hidden}
+  .faq summary{cursor:pointer;padding:15px 18px;font-weight:600;color:var(--ink);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:'+';color:var(--violet);font-size:22px;font-weight:600}
+  .faq details[open] summary::after{content:'\2013'}
+  .faq .a{padding:0 18px 16px;color:var(--body);font-size:15.5px}
+  .ctacard{background:linear-gradient(135deg,#171428,#0D0D0F);border-radius:24px;padding:40px 30px;text-align:center;color:#fff;margin:40px 0}
+  .ctacard h2{color:#fff;margin:0 0 10px}
+  .ctacard p{color:#c4c4d2;max-width:480px;margin:0 auto 22px}
+  .ctacard .btn{font-size:17px;padding:14px 28px}
+  .sources{font-size:14px;color:var(--muted)}
+  .sources h3{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  .sources ol{padding-left:20px}
+  .sources li{margin:7px 0}
+  footer{border-top:1px solid var(--border);background:var(--surface);margin-top:30px;padding:26px 0;color:var(--muted);font-size:13.5px;text-align:center}
+</style>
+</head>
+<body>
+<div class="ribbon">Sample article prepared for <strong>iDenfy</strong> by <a href="https://buildmytribe.io" target="_blank" rel="noopener">BuildMyTribe</a> &middot; placement-ready draft, written in your voice</div>
+<div class="topbar">
+  <div class="wrap">
+    <img src="https://idenfy.com/wp-content/uploads/2024/01/iDenfy-logo-dark.svg" alt="iDenfy" onerror="this.outerHTML='<strong style=&quot;font-size:22px;color:#0D0D0F&quot;>iDenfy</strong>'" />
+    <nav class="nav"><span>Products</span><span>Solutions</span><span>Pricing</span><span>Resources</span></nav>
+    <a class="btn" href="https://www.idenfy.com/" target="_blank" rel="noopener">Book a demo</a>
+  </div>
+</div>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Identity Verification &middot; KYC &amp; AML</div>
+    <h1>Manual KYC vs Automated Identity Verification: The Real Cost to Onboard a User in 2026</h1>
+    <p class="lede">Speed, cost per check, and fraud caught, compared side by side. Plus a calculator to size the savings for your own onboarding volume.</p>
+    <div class="byline">
+      <div class="av">TB</div>
+      <div>By <strong>Tobias Brown</strong>, BuildMyTribe</div>
+      <span class="dot"></span><div>9 min read</div>
+      <span class="dot"></span><div>Updated June 2026</div>
+    </div>
+    <div class="audio" id="audio">
+      <button id="playBtn" aria-label="Play audio summary">&#9658;</button>
+      <div class="meta">
+        <div class="t">Listen instead &middot; narrated by Ava</div>
+        <div class="s" id="audioState">Short audio version of this article</div>
+        <div class="track"><i id="trackFill"></i></div>
+      </div>
+      <div class="time" id="audioTime">0:00</div>
+      <audio id="player" preload="none" src="ava-narration.mp3"></audio>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="block reveal">
+    <div class="takeaways">
+      <h4>Key takeaways</h4>
+      <ul>
+        <li>A single manual KYC review takes <strong>18+ minutes</strong>; a specialist clears roughly <strong>3 checks an hour</strong>.</li>
+        <li>More than half of banks spend <strong>$1,500 to $3,000</strong> per manual review when fully loaded; automated checks run near <strong>$1.35</strong> each.</li>
+        <li><strong>70% of financial firms</strong> have lost prospective clients to slow or clunky onboarding, up from 48% in 2023.</li>
+        <li>Automation cuts verification time by about <strong>78%</strong> and onboarding cost by up to <strong>70%</strong>, while catching more fraud.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="block reveal">
+    <p class="nugget">For most fintechs, <strong>automated identity verification wins on every axis that matters</strong>. It clears a user in seconds instead of 18+ minutes, costs a couple of dollars instead of hundreds, and catches more fraud because it pairs document checks with biometrics and liveness. Manual review still has a place for edge cases and high-risk escalations, not for the bulk of your onboarding.</p>
+  </div>
+  <div class="block reveal">
+    <h2>Why onboarding speed is now a revenue problem</h2>
+    <p>Verification used to be a back-office checkbox. It isn't anymore. When a new user is sitting in your sign-up flow with their phone in hand, every extra minute is a chance to lose them. The data is blunt about it: <strong>70% of financial institutions say they have lost prospective clients</strong> because onboarding was too slow or too complex, a figure that climbed from 67% in 2024 and just 48% in 2023.</p>
+    <p>The drop-off clusters right at the identity step. Roughly <strong>one in five applications</strong> is abandoned over KYC and document friction, and about 70% of users walk away if verification drags past three minutes. So the question isn't whether to verify. It's how to verify fast enough that the user you worked hard to acquire actually makes it through.</p>
+  </div>
+  <div class="block reveal">
+    <div class="statcard">
+      <div class="big">$442<span>B</span></div>
+      <div class="cap">Estimated global financial fraud losses in 2025. The cost of getting identity wrong is rising, not falling.</div>
+    </div>
+  </div>
+  <div class="block reveal">
+    <h2>Manual vs automated, line by line</h2>
+    <p>Here is the same onboarding job done two ways. The manual column reflects widely reported figures for fully loaded analyst review; the automated column reflects what an AI-driven platform like iDenfy delivers today.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>What you measure</th><th>Manual KYC</th><th>Automated (iDenfy)</th></tr></thead>
+        <tbody>
+          <tr><td class="lbl">Time per check</td><td class="man">18+ minutes</td><td class="aut">Seconds</td></tr>
+          <tr><td class="lbl">Throughput</td><td class="man">~3 checks / hour</td><td class="aut">Thousands / hour</td></tr>
+          <tr><td class="lbl">Cost per check</td><td class="man">$25 to $50 in analyst time</td><td class="aut">~$1.35</td></tr>
+          <tr><td class="lbl">Fraud detection</td><td class="man">Eye-balling documents</td><td class="aut">Document + face match + liveness</td></tr>
+          <tr><td class="lbl">Scales with volume</td><td class="man">Hire more analysts</td><td class="aut">Same flow, any volume</td></tr>
+          <tr><td class="lbl">Audit trail</td><td class="man">Manual notes</td><td class="aut">Time-stamped, exportable</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The headline gap is cost and speed, but the quieter win is consistency. A tired analyst at hour seven catches less than a fresh one at hour one. An automated pipeline applies the same rules to user number five and user number five million.</p>
+  </div>
+  <div class="block reveal">
+    <div class="card">
+      <h3>Cost to clear 5,000 users</h3>
+      <svg id="chart" viewBox="0 0 520 240" width="100%" role="img" aria-label="Bar chart comparing the cost to verify 5,000 users manually versus automatically"></svg>
+      <div class="legend"><span><i style="background:#e0556a"></i>Manual KYC</span><span><i style="background:#16a06a"></i>Automated</span></div>
+      <div class="chart-cap">Illustrative, using $25 analyst time per manual check and $1.35 per automated check.</div>
+    </div>
+  </div>
+  <div class="block reveal">
+    <h2>Size it for your own volume</h2>
+    <p>Plug in your monthly sign-ups and see the gap for yourself. Drag the sliders.</p>
+    <div class="card calc">
+      <label>Users to verify per month <span style="float:right;color:var(--violet-dark)" id="uVal">5,000</span></label>
+      <div class="row"><input type="range" id="users" min="100" max="50000" step="100" value="5000" /></div>
+      <label>Cost per manual check (analyst time) <span style="float:right;color:var(--violet-dark)" id="mVal">$25</span></label>
+      <div class="row"><input type="range" id="manual" min="10" max="50" step="1" value="25" /></div>
+      <label>Cost per automated check <span style="float:right;color:var(--violet-dark)" id="aVal">$1.35</span></label>
+      <div class="row"><input type="range" id="auto" min="0.5" max="5" step="0.05" value="1.35" /></div>
+      <div class="results">
+        <div class="res man"><div class="k">Manual / month</div><div class="v" id="manTotal">$125,000</div></div>
+        <div class="res aut"><div class="k">Automated / month</div><div class="v" id="autTotal">$6,750</div></div>
+      </div>
+      <div class="savings">
+        <div class="v" id="save">$118,250 <span id="savePct">(95%)</span></div>
+        <div class="s">saved every month &middot; <span id="hours">1,667</span> analyst hours freed up</div>
+      </div>
+      <p class="assump">Manual throughput assumed at 3 checks per analyst hour. Figures are estimates to show the shape of the savings, not a quote.</p>
+    </div>
+  </div>
+  <div class="block reveal">
+    <div class="pull">
+      <blockquote>&ldquo;The real cost of manual review isn't the salary line. It's the users who never finish signing up.&rdquo;</blockquote>
+      <cite>From the audio version, narrated by Ava</cite>
+    </div>
+  </div>
+  <div class="block reveal">
+    <h2>Where manual review still earns its keep</h2>
+    <p>Automation is the default, not the whole answer. Keep humans in the loop for the cases that genuinely need judgment: a flagged high-risk jurisdiction, a politically exposed person match that needs context, a document that looks tampered in a way the model wants a second opinion on. The pattern that works is <strong>automate the 95% and escalate the rest</strong>, so your specialists spend their hours on the 50 cases that matter rather than the 5,000 that don't.</p>
+  </div>
+  <div class="block reveal">
+    <h2>Quick check: how well do you know KYC economics?</h2>
+    <div class="card quiz" id="quiz"></div>
+  </div>
+  <div class="block reveal">
+    <h2>Frequently asked</h2>
+    <div class="faq">
+      <details><summary>How long should identity verification take?</summary><div class="a">For a smooth flow, aim for under a minute end to end. Automated document plus biometric checks return a result in seconds, while manual review averages 18 minutes or more. Since roughly 70% of users abandon if verification passes three minutes, speed is a conversion lever, not just an operations metric.</div></details>
+      <details><summary>How much does KYC cost per customer?</summary><div class="a">Fully loaded manual review runs $25 to $50 in analyst time per check, and more than half of banks report $1,500 to $3,000 per review once compliance overhead is counted. Automated verification is closer to a dollar or two per check, which is why high-volume onboarding moves to automation first.</div></details>
+      <details><summary>Is automated KYC less accurate than a human?</summary><div class="a">For standard cases the opposite tends to hold. Pairing document verification with face matching and liveness detection catches manipulations a human skimming a scan can miss, and it applies the same standard to every check. Humans stay valuable for nuanced escalations, not bulk review.</div></details>
+      <details><summary>What is the difference between KYC, KYB, and AML?</summary><div class="a">KYC verifies an individual customer's identity. KYB does the same for a business, including its owners and structure. AML is the broader anti-money-laundering program that screening, monitoring, and reporting feed into. Identity verification is the front door for all three.</div></details>
+      <details><summary>Can automated verification keep us compliant across regions?</summary><div class="a">A capable platform supports thousands of document types across jurisdictions and produces a time-stamped, exportable audit trail for regulators. That coverage is hard to staff manually, which is part of why automation also lowers compliance risk.</div></details>
+    </div>
+  </div>
+  <div class="block reveal">
+    <div class="ctacard">
+      <h2>See your numbers, not just ours</h2>
+      <p>iDenfy verifies users in seconds with AI-driven document checks, face matching, and liveness, trusted by more than 1,000 businesses. Book a walkthrough on your own onboarding flow.</p>
+      <a class="btn" href="https://www.idenfy.com/" target="_blank" rel="noopener">Book a demo</a>
+    </div>
+  </div>
+  <div class="block reveal sources">
+    <h3>Sources</h3>
+    <ol>
+      <li>Fenergo / fintech.global, "70% of banks lose clients due to slow onboarding," 2025. <a href="https://fintech.global/2025/10/08/70-of-banks-lose-clients-due-to-slow-onboarding/" target="_blank" rel="noopener">link</a></li>
+      <li>Middesk, "The True Cost of Manual ID Verification," manual review cost and throughput. <a href="https://www.middesk.com/blog/manual-identity-verification" target="_blank" rel="noopener">link</a></li>
+      <li>Help Net Security, global financial fraud losses of $442 billion in 2025. <a href="https://www.helpnetsecurity.com/2026/03/18/online-fraud-victims-losses-interpol-report/" target="_blank" rel="noopener">link</a></li>
+      <li>AU10TIX via industry reporting, automation cuts verification time ~78% and cost up to 70%. <a href="https://www.aiprise.com/blog/automated-kyc-verification-manual-process-explained" target="_blank" rel="noopener">link</a></li>
+      <li>iDenfy, published platform figures (3x faster onboarding, up to 70% lower cost, ~$1.35 per verification). <a href="https://www.idenfy.com/" target="_blank" rel="noopener">link</a></li>
+    </ol>
+  </div>
+</main>
+<footer>
+  <div class="wrap">Concept article produced by BuildMyTribe's content engine as a free sample for iDenfy. Facts are sourced above; figures labeled illustrative are estimates.</div>
+</footer>
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  const fmt=n=>'$'+Math.round(n).toLocaleString('en-US');
+  const U=document.getElementById('users'),M=document.getElementById('manual'),A=document.getElementById('auto');
+  const uVal=document.getElementById('uVal'),mVal=document.getElementById('mVal'),aVal=document.getElementById('aVal');
+  function calc(){
+    const u=+U.value,m=+M.value,a=+A.value;
+    uVal.textContent=u.toLocaleString('en-US');
+    mVal.textContent='$'+m;
+    aVal.textContent='$'+a.toFixed(2);
+    const manT=u*m, autT=u*a, sv=manT-autT, pct=manT>0?Math.round(sv/manT*100):0;
+    document.getElementById('manTotal').textContent=fmt(manT);
+    document.getElementById('autTotal').textContent=fmt(autT);
+    document.getElementById('save').innerHTML=fmt(sv)+' <span>('+pct+'%)</span>';
+    document.getElementById('hours').textContent=Math.round(u/3).toLocaleString('en-US');
+  }
+  [U,M,A].forEach(s=>s.addEventListener('input',calc));
+  function drawChart(){
+    const man=5000*25, aut=5000*1.35;
+    const svg=document.getElementById('chart');
+    const W=520,H=240,pad=46,baseY=H-40,maxBarH=150;
+    const max=Math.max(man,aut),bw=120,x1=140,x2=300;
+    const h1=Math.max(6,(man/max)*maxBarH), h2=Math.max(6,(aut/max)*maxBarH);
+    svg.innerHTML='<line x1="'+pad+'" y1="'+baseY+'" x2="'+(W-20)+'" y2="'+baseY+'" stroke="#e7e7ee" stroke-width="1"/>'+
+      '<rect x="'+x1+'" y="'+(baseY-h1)+'" width="'+bw+'" height="'+h1+'" rx="8" fill="#e0556a"/>'+
+      '<text x="'+(x1+bw/2)+'" y="'+(baseY-h1-10)+'" text-anchor="middle" font-size="16" font-weight="700" fill="#0D0D0F" font-family="Inter">'+fmt(man)+'</text>'+
+      '<text x="'+(x1+bw/2)+'" y="'+(baseY+22)+'" text-anchor="middle" font-size="13" fill="#6b6b76" font-family="Inter">Manual</text>'+
+      '<rect x="'+x2+'" y="'+(baseY-h2)+'" width="'+bw+'" height="'+h2+'" rx="8" fill="#16a06a"/>'+
+      '<text x="'+(x2+bw/2)+'" y="'+(baseY-h2-10)+'" text-anchor="middle" font-size="16" font-weight="700" fill="#0D0D0F" font-family="Inter">'+fmt(aut)+'</text>'+
+      '<text x="'+(x2+bw/2)+'" y="'+(baseY+22)+'" text-anchor="middle" font-size="13" fill="#6b6b76" font-family="Inter">Automated</text>';
+  }
+  drawChart();calc();
+  const QS=[
+    {q:"About how long does a single manual KYC review take?",o:["Under 1 minute","5 minutes","18+ minutes","2 hours"],c:2,e:"Reported manual reviews average 18 minutes or more, which is why a specialist clears only about 3 checks an hour."},
+    {q:"What share of financial firms say slow onboarding has cost them clients?",o:["About 20%","About 45%","About 70%","Almost none"],c:2,e:"It reached 70% in 2025, up from 67% in 2024 and 48% in 2023. Onboarding speed is now a revenue issue."},
+    {q:"Roughly how much can automation cut verification time?",o:["About 10%","About 30%","About 78%","It makes it slower"],c:2,e:"Industry figures put the time reduction near 78%, alongside onboarding cost savings of up to 70%."}
+  ];
+  let qi=0,answered=false;
+  const quiz=document.getElementById('quiz');
+  function renderQ(){
+    answered=false;
+    const item=QS[qi];
+    quiz.innerHTML='<p class="q">Question '+(qi+1)+' of '+QS.length+'. '+item.q+'</p>'+
+      item.o.map((t,i)=>'<button class="opt" data-i="'+i+'">'+t+'</button>').join('')+
+      '<div class="exp" id="exp"></div>'+
+      '<div class="nav"><span>'+(qi+1)+' / '+QS.length+'</span><span id="next" style="cursor:pointer;color:var(--violet-dark);font-weight:600;display:none">Next question &rarr;</span></div>';
+    quiz.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',pick));
+  }
+  function pick(e){
+    if(answered)return;answered=true;
+    const i=+e.target.dataset.i,item=QS[qi];
+    quiz.querySelectorAll('.opt').forEach(b=>{const bi=+b.dataset.i;if(bi===item.c)b.classList.add('correct');else if(bi===i)b.classList.add('wrong');});
+    const exp=document.getElementById('exp');exp.textContent=(i===item.c?'Correct. ':'Not quite. ')+item.e;exp.classList.add('show');
+    const nx=document.getElementById('next');
+    if(qi<QS.length-1){nx.style.display='inline';nx.onclick=function(){qi++;renderQ();};}
+    else{nx.style.display='inline';nx.textContent='Restart';nx.onclick=function(){qi=0;renderQ();};}
+  }
+  renderQ();
+  (function(){
+    const player=document.getElementById('player'),btn=document.getElementById('playBtn'),
+      fill=document.getElementById('trackFill'),time=document.getElementById('audioTime'),
+      state=document.getElementById('audioState');
+    let ok=true;
+    player.addEventListener('error',function(){ok=false;state.textContent='Audio version coming soon';btn.style.opacity=.5;});
+    const f=s=>{s=Math.max(0,s|0);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');};
+    btn.addEventListener('click',function(){if(!ok)return;if(player.paused){player.play();btn.innerHTML='&#10073;&#10073;';}else{player.pause();btn.innerHTML='&#9658;';}});
+    player.addEventListener('timeupdate',function(){if(player.duration){fill.style.width=(player.currentTime/player.duration*100)+'%';time.textContent=f(player.currentTime);}});
+    player.addEventListener('ended',function(){btn.innerHTML='&#9658;';fill.style.width='0%';time.textContent='0:00';});
+  })();
+</script>
+</body>
+</html>
